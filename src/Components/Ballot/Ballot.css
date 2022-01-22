@@ -1,0 +1,98 @@
+.ballot {
+  font-family: Roboto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  padding: 50px;
+}
+
+.title-category {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0px 0px 3px gold;
+  font-size: 50px;
+  font-weight: bold;
+  color: gold;
+  margin-bottom: 20px;
+}
+
+.category {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 50px;
+}
+
+.selected-nominee {
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: 0px 0px 10px #CCCCCC;
+  color: gold;
+  border: 5px solid gold;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  width: 216px;
+  height: 360px;
+  margin: 0px 15px 50px 15px;
+  cursor: pointer;
+}
+
+.title-nominee {
+  background-color: black;
+  color: #CCCCCC;
+}
+
+.nominee {
+  display: flex;
+  flex-direction: column;
+  opacity: 0.5;
+  align-items: center;
+  justify-content: center;
+  font-size: 0px;
+  font-weight: bold;
+  border: 1px solid gold;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  width: 180px;
+  height: 300px;
+  margin: 0px 15px 50px 15px;
+  cursor: pointer;
+}
+
+.nominee:hover {
+  opacity: 1;
+  box-shadow: 0 0 6px gold;
+  text-shadow: 0px 0px 6px #CCCCCC;
+  color:gold;
+  font-size: 25px;
+  transform: scale(1.2);
+}
+
+.button-ballot {
+  font-family: Roboto;
+  width: 60vw;
+  padding: 20px;
+  background-color: #34AC9C;
+  cursor: pointer;
+  border-radius: 10px;
+  color: #CCCCCC;
+  text-shadow: 0px 0px 6px black;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.button-ballot:hover {
+  transform: scale(1.2);
+}
