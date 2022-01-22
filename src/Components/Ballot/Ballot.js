@@ -6,15 +6,23 @@ const Ballot = () => {
   const {
     data,
     selectedData,
-    handleSelectedData
+    modal,
+    message,
+    handleSelectedData,
+    handleSubmit,
+    closeModal,
   } = useHooks();
 
-  return (
+  return (  
     <div className='ballot'>
       {
         data && data.map((eachData) => {
           return (
-            <div id={eachData.id} className='title-category'>
+            <div
+              id={eachData.id}
+              key={eachData.id}
+              className='title-category'
+            >
               {
                 eachData.title
               }
@@ -26,7 +34,8 @@ const Ballot = () => {
                 {
                   eachData && eachData.items && eachData.items.map((eachDataNominee) => {
                     return (
-                      <div
+                      <div                        
+                        key={eachDataNominee.id}
                         id={eachDataNominee.id}
                         className={
                           selectedData && selectedData[eachData.id] && selectedData[eachData.id] === eachDataNominee.id ? 'selected-nominee' : 'nominee'
@@ -37,7 +46,7 @@ const Ballot = () => {
                           backgroundRepeat: 'no-repeat',
                           backgroundSize: 'cover',
                         }}
-                        onClick={(e) => handleSelectedData(e, eachData.id)}
+                        onClick={(e) => handleSelectedData(e, eachDataNominee.id, eachData.id)}
                       >
                         <div className='title-nominee'>
                           {
@@ -53,9 +62,26 @@ const Ballot = () => {
           );
         })
       }
-      <button className='button-ballot'>
+      <button
+        className={!selectedData || (selectedData && Object.keys(selectedData).length < data.length) ? 'button-disabled' : 'button-ballot'}
+        onClick={handleSubmit}
+        disabled={!selectedData || (selectedData && Object.keys(selectedData).length < data.length)}
+      >
         Submit your vote here
       </button>
+
+      {
+        modal && (
+          <div id="myModal" class="modal" onClick={closeModal}>
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <p>{message}</p>
+            </div>
+
+          </div>
+        )
+      }
+
     </div>
   )
 }

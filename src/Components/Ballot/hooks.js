@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import api from "../../Api/Api";
 
+const movieSelected = localStorage.getItem('movie-selected') &&  JSON.parse(localStorage.getItem('movie-selected'));
+
 const useHooks = () => {
   const [data, setData] = useState();
-  const [selectedData, setSelectedData] = useState();
+  const [modal, setModal] = useState(false);
+  const [message, setMessage] = useState('Failed');
+  const [selectedData, setSelectedData] = useState(movieSelected);
 
   const fetchDataBalot = async () => {
     await api.getBallotData().then((response) => {
@@ -11,14 +15,24 @@ const useHooks = () => {
     });
   }
 
-  const handleSelectedData = (e, idSelected) => {
-    const value = e.target.id;
+  const handleSelectedData = (e, valueSelected, idSelected) => {
+    e.preventDefault();
     setSelectedData((prevState) => (
       {
         ...prevState,
-        [idSelected]: value,
+        [idSelected]: valueSelected,
       }));
   }
+
+  const closeModal = () => {
+    setModal(false);
+  }
+
+  const handleSubmit = () => {
+    setMessage('Congrats you have already submitted your choice');
+    setModal(true);
+    localStorage.setItem('movie-selected', JSON.stringify(selectedData));
+  };
 
   useEffect(() => {
     fetchDataBalot();
@@ -27,7 +41,11 @@ const useHooks = () => {
   return {
     data,
     selectedData,
+    modal,
+    message,
     handleSelectedData,
+    handleSubmit,
+    closeModal,
   }
 };
 
